@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
+"""Let physical servers figure out their ipmi ip, and provide it in a grain."""
+
 import os
 import re
 import subprocess
 
 
 def ipmi_ip():
+    """Return the IPMI IP grain."""
     if os.path.isfile('/usr/bin/ipmitool'):
         try:
             lan_print = subprocess.check_output(['/usr/bin/ipmitool',
