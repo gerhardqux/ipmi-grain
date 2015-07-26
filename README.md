@@ -3,6 +3,7 @@
 Let physical servers figure out their ipmi ip, and provide it in a grain.
 
 [![Build Status](https://travis-ci.org/gerhardqux/ipmi-grain.svg?branch=master)](https://travis-ci.org/gerhardqux/ipmi-grain)
+[![Code Climate](https://codeclimate.com/github/gerhardqux/ipmi-grain/badges/gpa.svg)](https://codeclimate.com/github/gerhardqux/ipmi-grain)
 
 ## Synopsis
 
