@@ -24,4 +24,4 @@ def ipmi_ip():
     }
 
 if __name__ == '__main__':
-    print ipmi_ip()
+    print(ipmi_ip())
