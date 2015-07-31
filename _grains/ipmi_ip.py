@@ -14,17 +14,21 @@ def ipmi_ip():
             lan_print = subprocess.check_output(['/usr/bin/ipmitool',
                                                  'lan',
                                                  'print'])
-            for line in lan_print.split('\n'):
-                match = re.match(r'^IP Address\s+:\s*(.+)$', line)
-                if match:
-                    return {
-                        'ipmi_ip': match.group(1)
-                    }
         except:
             pass
+        else:
+            match = re.search(r'^IP Address\s+:\s*(.+)$',
+                              lan_print,
+                              re.MULTILINE)
+            if match:
+                return {
+                    'ipmi_ip': match.group(1)
+                }
+
     return {
         'ipmi_ip': 'Unknown'
     }
+
 
 if __name__ == '__main__':
     print(ipmi_ip())
