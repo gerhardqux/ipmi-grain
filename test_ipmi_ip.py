@@ -12,7 +12,7 @@ class IPMIIPTest(unittest.TestCase):
             fake_isfile = False
             isfile.return_value = fake_isfile
             self.assertDictEqual(ipmi_ip.ipmi_ip(),
-                                 {'ipmi_ip': 'Unknown'})
+                                 {})
 
     def test_ipmi_localhost(self):
         with mock.patch('os.path.isfile') as isfile, \
@@ -69,7 +69,7 @@ class IPMIIPTest(unittest.TestCase):
             chk_out.return_value = fake_chk_out
 
             self.assertDictEqual(ipmi_ip.ipmi_ip(),
-                                 {'ipmi_ip': 'Unknown'})
+                                 {})
 
 
 if __name__ == '__main__':
