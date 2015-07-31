@@ -9,25 +9,25 @@ import subprocess
 
 def ipmi_ip():
     """Return the IPMI IP grain."""
-    if os.path.isfile('/usr/bin/ipmitool'):
-        try:
-            lan_print = subprocess.check_output(['/usr/bin/ipmitool',
-                                                 'lan',
-                                                 'print'])
-        except:
-            pass
-        else:
-            match = re.search(r'^IP Address\s+:\s*(.+)$',
-                              lan_print,
-                              re.MULTILINE)
-            if match:
-                return {
-                    'ipmi_ip': match.group(1)
-                }
+    if not os.path.isfile('/usr/bin/ipmitool'):
+        return {}
 
-    return {
-        'ipmi_ip': 'Unknown'
-    }
+    try:
+        lan_print = subprocess.check_output(['/usr/bin/ipmitool',
+                                             'lan',
+                                             'print'])
+    except:
+        pass
+    else:
+        match = re.search(r'^IP Address\s+:\s*(.+)$',
+                          lan_print,
+                          re.MULTILINE)
+        if match:
+            return {
+                'ipmi_ip': match.group(1)
+            }
+
+    return {}
 
 
 if __name__ == '__main__':
