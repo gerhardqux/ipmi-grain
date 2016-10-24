@@ -17,28 +17,26 @@ def ipmi_ip():
                                              'lan',
                                              'print'])
     except:
-        pass
-    else:
-        res = {}
-        match = re.search(r'^IP Address\s+:\s*(.+)$',
-                          lan_print,
-                          re.MULTILINE)
-        if match:
-            res.update({
-                'ipmi_ip': match.group(1)
-            })
+        return {}
 
-        match = re.search(r'^MAC Address\s+:\s*(.+)$',
-                          lan_print,
-                          re.MULTILINE)
-        if match:
-            res.update({
-                'ipmi_mac': match.group(1)
-            })
+    res = {}
+    match = re.search(r'^IP Address\s+:\s*(.+)$',
+                      lan_print,
+                      re.MULTILINE)
+    if match:
+        res.update({
+            'ipmi_ip': match.group(1)
+        })
 
-        return res
+    match = re.search(r'^MAC Address\s+:\s*(.+)$',
+                      lan_print,
+                      re.MULTILINE)
+    if match:
+        res.update({
+            'ipmi_mac': match.group(1)
+        })
 
-    return {}
+    return res
 
 
 if __name__ == '__main__':
