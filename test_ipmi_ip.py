@@ -56,7 +56,8 @@ class IPMIIPTest(unittest.TestCase):
             chk_out.return_value = fake_chk_out
 
             self.assertDictEqual(ipmi_ip.ipmi_ip(),
-                                 {'ipmi_ip': '192.168.42.42'})
+                                 {'ipmi_ip': '192.168.42.42',
+                                  'ipmi_mac': '52:54:00:49:5c:13'})
 
     def test_ipmi_empty(self):
         with mock.patch('os.path.isfile') as isfile, \
